@@ -1,0 +1,215 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spider-Man: Brand New Day</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor">
+  <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10" cy="10" r="8" stroke="#e8192c" stroke-width="1.5"/>
+    <path d="M10 2 Q14 6 10 10 Q6 6 10 2Z" fill="#e8192c"/>
+    <path d="M10 18 Q14 14 10 10 Q6 14 10 18Z" fill="#e8192c"/>
+    <path d="M2 10 Q6 14 10 10 Q6 6 2 10Z" fill="#e8192c"/>
+    <path d="M18 10 Q14 14 10 10 Q14 6 18 10Z" fill="#e8192c"/>
+    <circle cx="10" cy="10" r="2" fill="#e8192c"/>
+  </svg>
+</div>
+<div id="cursor-ring"></div>
+
+<!-- WEB TRAIL CANVAS -->
+<canvas id="web-canvas"></canvas>
+
+<!-- INTRO OVERLAY -->
+<div id="intro">
+  <div id="intro-spider">🕷️</div>
+  <div id="intro-logo">MARVEL STUDIOS</div>
+</div>
+
+<!-- TRAILER DIM OVERLAY -->
+<div class="trailer-bg-dim" id="trailer-dim">
+  <div class="trailer-modal">
+    <button class="close-trailer" id="close-trailer">✕ Close</button>
+    <iframe id="trailer-iframe" src="" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- FLOATING CTA -->
+<div id="float-cta">
+  <button id="float-btn">🕷 Book Tickets</button>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">SM : BND</div>
+  <ul class="nav-links">
+    <li><a href="#about">Story</a></li>
+    <li><a href="#cast">Cast</a></li>
+    <li><a href="#trailer">Trailer</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#countdown">Release</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <canvas id="city-canvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Marvel Studios Presents</p>
+    <h1 class="hero-title">
+      Spider-Man<br>
+      <span>Brand New Day</span>
+    </h1>
+    <p class="hero-tagline">With great power comes <em>a brand new beginning</em></p>
+    <div class="hero-btns">
+      <a href="#" class="btn btn-primary" id="watch-trailer-btn" onclick="openTrailer(event)">
+        <div class="spider-sense"></div>
+        ▶ Watch Trailer
+      </a>
+      <a href="#countdown" class="btn btn-outline">
+        <div class="spider-sense"></div>
+        Book Tickets
+      </a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="glow-line" style="top:0;"></div>
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">The Story</span>
+      <h2 class="section-title">A New Chapter Begins</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>After the world forgot who he was, <strong>Peter Parker</strong> finds himself at a crossroads. No longer defined by the past, he must forge a new identity — not just as Spider-Man, but as a man.</p>
+        <p>New enemies lurk in the shadows of New York City. A conspiracy older than any hero threatens to unravel everything. And in the chaos of <strong>rebirth</strong>, one question remains:</p>
+        <p>Who is Spider-Man <strong>without his story</strong>?</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-symbol">🕷️</div>
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-num">2025</span>
+            <span class="stat-label">Release Year</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">2h 42m</span>
+            <span class="stat-label">Runtime</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">PG-13</span>
+            <span class="stat-label">Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glow-line" style="bottom:0;"></div>
+</section>
+
+<!-- CAST -->
+<section id="cast">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">The Players</span>
+      <h2 class="section-title">Cast & Characters</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0;">Click cards to reveal characters</p>
+    </div>
+    <div class="cast-grid" id="cast-grid">
+      <!-- Cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- TRAILER -->
+<section id="trailer">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label">Official Trailer</span>
+      <h2 class="section-title">Watch the Trailer</h2>
+      <div class="divider" style="margin:1.5rem auto;"></div>
+    </div>
+    <div class="trailer-wrap reveal">
+      <div class="trailer-frame" id="trailer-frame" onclick="openTrailer(event)">
+        <div class="trailer-thumb">
+          <span style="font-size:8rem;filter:grayscale(0.5);">🕷️</span>
+        </div>
+        <div id="play-btn">
+          <div class="play-circle">▶</div>
+          <span class="play-label">Play Official Trailer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Photo Gallery</span>
+      <h2 class="section-title">Scene Stills</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="gallery-grid reveal" id="gallery-grid">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="section-label">Release Date</span>
+      <h2 class="section-title">Coming Soon</h2>
+      <div class="divider" style="margin:1.5rem auto;"></div>
+    </div>
+    <div class="countdown-wrap reveal">
+      <div class="time-block"><span class="time-num" id="cd-days">000</span><span class="time-label">Days</span></div>
+      <div class="time-block"><span class="time-num" id="cd-hrs">00</span><span class="time-label">Hours</span></div>
+      <div class="time-block"><span class="time-num" id="cd-min">00</span><span class="time-label">Minutes</span></div>
+      <div class="time-block"><span class="time-num" id="cd-sec">00</span><span class="time-label">Seconds</span></div>
+    </div>
+    <p class="release-note reveal">Opening in theaters — <span>July 31, 2025</span></p>
+    <div style="margin-top:3rem; text-align:center;" class="reveal">
+      <a href="#" class="btn btn-primary" style="font-size:1rem;padding:1.2rem 3.5rem;">
+        <div class="spider-sense"></div>
+        🕷 Reserve Your Seat
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Spider-Man</div>
+  <div class="footer-sub">Brand New Day &mdash; A Marvel Studios Film</div>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="#">Press Kit</a></li>
+    <li><a href="#">Marvel.com</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Marvel Studios. All Rights Reserved. Spider-Man character ™ & © Marvel. This is a fan concept page.</p>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>
+
+
