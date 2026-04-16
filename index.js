@@ -216,8 +216,11 @@ updateScrollProgress();
    CAST CARDS
 ══════════════════════════════════════════ */
 const castData = [
-  { emoji:'🕷️', name:'Tom Holland',    role:'Peter Parker',    char:'Spider-Man',     desc:'Struggling to rebuild after the world forgot his name, Peter faces his greatest challenge: being ordinary.' },
-  { emoji:'🦹‍♀️', name:'Zendaya',       role:'MJ Watson',       char:'Mary Jane',      desc:'Smart, sharp, and endlessly perceptive, MJ may be the one person who remembers the truth.' },
+  { emoji:'🕷️', name:'Tom Holland',    role:'Peter Parker',    char:'Spider-Man',     img:'cast/tom.webp', desc:'Struggling to rebuild after the world forgot his name, Peter faces his greatest challenge: being ordinary.' },
+  { emoji:'🦹‍♀️', name:'Zendaya',       role:'MJ Watson',       char:'Mary Jane',      img:'cast/zendaya.webp', desc:'Smart, sharp, and endlessly perceptive, MJ may be the one person who remembers the truth.' },
+  { emoji:'🎒', name:'Jacob Batalon',  role:'Ned Leeds',       char:'Ned Leeds',      img:'cast/jacob.jpg', desc:'Peter\'s loyal friend whose humor and heart remain a steady anchor in uncertain times.' },
+  { emoji:'🧠', name:'Mark Ruffalo',   role:'Bruce Banner',    char:'The Hulk',       img:'cast/mark.jpg', desc:'A brilliant mind carrying heavy burdens, offering guidance when Peter needs perspective most.' },
+  { emoji:'🔥', name:'Sadie Sink',     role:'Mysterious Ally', char:'Jean Grey',      img:'cast/sadie sink.jpg', desc:'A powerful newcomer with secrets of her own, stepping into a world where trust is fragile.' },
   { emoji:'🧪', name:'Willem Dafoe',   role:'Norman Osborn',   char:'Green Goblin',   desc:'An old enemy resurfaces, but this time the battle isn\'t just physical — it\'s existential.' },
   { emoji:'🕵️', name:'Jamie Foxx',     role:'Max Dillon',      char:'Electro',        desc:'Reborn with a new purpose, Electro holds a grudge that bridges two timelines.' },
   { emoji:'🤖', name:'Paul Bettany',   role:'Dr. Conrad Boone', char:'The Vanguard',  desc:'A new face in a dangerous game, with motives too murky to trust and too compelling to ignore.' },
@@ -234,7 +237,7 @@ castData.forEach((c, i) => {
   card.innerHTML = `
     <div class="cast-inner">
       <div class="cast-front">
-        <div class="cast-avatar">${c.emoji}</div>
+        <div class="cast-avatar">${c.img ? `<img src="${c.img}" alt="${c.name}" loading="lazy" decoding="async">` : c.emoji}</div>
         <div class="cast-info">
           <div class="cast-name">${c.name}</div>
           <div class="cast-role">${c.role}</div>
