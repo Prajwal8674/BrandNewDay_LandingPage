@@ -221,12 +221,6 @@ const castData = [
   { emoji:'🎒', name:'Jacob Batalon',  role:'Ned Leeds',       char:'Ned Leeds',      img:'cast/jacob.jpg', desc:'Peter\'s loyal friend whose humor and heart remain a steady anchor in uncertain times.' },
   { emoji:'🧠', name:'Mark Ruffalo',   role:'Bruce Banner',    char:'The Hulk',       img:'cast/mark.jpg', desc:'A brilliant mind carrying heavy burdens, offering guidance when Peter needs perspective most.' },
   { emoji:'🔥', name:'Sadie Sink',     role:'Mysterious Ally', char:'Jean Grey',      img:'cast/sadie sink.jpg', desc:'A powerful newcomer with secrets of her own, stepping into a world where trust is fragile.' },
-  { emoji:'🧪', name:'Willem Dafoe',   role:'Norman Osborn',   char:'Green Goblin',   desc:'An old enemy resurfaces, but this time the battle isn\'t just physical — it\'s existential.' },
-  { emoji:'🕵️', name:'Jamie Foxx',     role:'Max Dillon',      char:'Electro',        desc:'Reborn with a new purpose, Electro holds a grudge that bridges two timelines.' },
-  { emoji:'🤖', name:'Paul Bettany',   role:'Dr. Conrad Boone', char:'The Vanguard',  desc:'A new face in a dangerous game, with motives too murky to trust and too compelling to ignore.' },
-  { emoji:'🦊', name:'Florence Pugh',  role:'Black Fox',       char:'Black Fox',      desc:'A master of shadows whose allegiances shift like the tide, always three steps ahead.' },
-  { emoji:'🕶️', name:'Jon Favreau',    role:'Happy Hogan',     char:'Happy Hogan',    desc:'More than a bodyguard — the last thread connecting Peter to who he used to be.' },
-  { emoji:'💎', name:'Marisa Tomei',   role:'May Parker',      char:'Aunt May',       desc:'A vision, a memory, or something more? Her presence in Peter\'s mind drives him forward.' },
 ];
 
 const castGrid = document.getElementById('cast-grid');
@@ -382,7 +376,7 @@ function getNextReleaseDate() {
   return next;
 }
 
-const releaseDate = getNextReleaseDate();
+const releaseDate = getNextReleaseDate().getTime();
 const cdDays = document.getElementById('cd-days');
 const cdHrs  = document.getElementById('cd-hrs');
 const cdMin  = document.getElementById('cd-min');
@@ -390,7 +384,7 @@ const cdSec  = document.getElementById('cd-sec');
 
 const releaseNoteSpan = document.querySelector('.release-note span');
 if (releaseNoteSpan) {
-  const formatted = releaseDate.toLocaleDateString('en-US', {
+  const formatted = new Date(releaseDate).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric'
@@ -408,7 +402,7 @@ function tick(el, val) {
   }
 }
 
-setInterval(() => {
+function updateCountdown() {
   const now = Date.now();
   const diff = Math.max(0, releaseDate - now);
   const d = Math.floor(diff / 86400000);
@@ -419,7 +413,10 @@ setInterval(() => {
   tick(cdHrs, pad(h));
   tick(cdMin, pad(m));
   tick(cdSec, pad(s));
-}, 1000);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 /* ══════════════════════════════════════════
    TRAILER MODAL
@@ -428,8 +425,7 @@ function openTrailer(e) {
   e.preventDefault();
   const dim = document.getElementById('trailer-dim');
   const iframe = document.getElementById('trailer-iframe');
-  // Use a real Spider-Man trailer (No Way Home official)
-  iframe.src = 'https://www.youtube.com/embed/JfVOs4VSpmA?autoplay=1&rel=0';
+  iframe.src = 'https://www.youtube.com/embed/aBlsrtxuwss?autoplay=1&rel=0&modestbranding=1&playsinline=1';
   dim.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -515,11 +511,13 @@ if (aboutText) {
       const words = aboutText.querySelectorAll('p');
       words.forEach((p, pi) => {
         const html = p.innerHTML;
-        const parts = html.split(/(<[^>]+>|[^<\s]+)/g).filter(Boolean);
+        const parts = html.split(/(<[^>]+>|[^<\s]+|\s+)/g).filter(Boolean);
         let delay = pi * 200;
         let rebuilt = '';
         parts.forEach(part => {
           if (part.startsWith('<')) {
+            rebuilt += part;
+          } else if (/^\s+$/.test(part)) {
             rebuilt += part;
           } else {
             rebuilt += `<span class="word" style="transition-delay:${delay}ms">${part}</span>`;
