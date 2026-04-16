@@ -275,16 +275,10 @@ castData.forEach((c, i) => {
    GALLERY
 ══════════════════════════════════════════ */
 const galleryData = [
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Skyline Swing', pos:'50% 35%', filter:'saturate(1.15) contrast(1.05)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Suit Detail', pos:'68% 42%', filter:'saturate(1.2) contrast(1.08)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Wall-Crawl Focus', pos:'35% 52%', filter:'saturate(1.12) contrast(1.04)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Rooftop Watch', pos:'80% 40%', filter:'saturate(1.05) contrast(1.12)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Midnight Patrol', pos:'18% 46%', filter:'hue-rotate(-8deg) saturate(1.1) contrast(1.06)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Neon Reflections', pos:'60% 62%', filter:'saturate(1.2) contrast(1.03) brightness(0.98)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'City Edge', pos:'8% 32%', filter:'saturate(1.08) contrast(1.09)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Hero Landing', pos:'52% 74%', filter:'saturate(1.18) contrast(1.05)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Chasing Shadows', pos:'74% 52%', filter:'saturate(1.06) contrast(1.1)' },
-  { src:'marvels-spider-man-3840x2160-11990.jpeg', cap:'Night Sentinel', pos:'30% 30%', filter:'saturate(1.14) contrast(1.07)' },
+  { src:'gallary/animated.webp', cap:'Animated Poster', pos:'50% 50%', filter:'saturate(1.15) contrast(1.05)' },
+  { src:'gallary/backSpidey.jpg', cap:'Back Spidey', pos:'50% 50%', filter:'saturate(1.2) contrast(1.08)' },
+  { src:'gallary/blackPoster.jfif', cap:'Black Poster', pos:'50% 50%', filter:'saturate(1.12) contrast(1.04)' },
+  { src:'gallary/brad new day.jpg', cap:'Brand New Day', pos:'50% 50%', filter:'saturate(1.05) contrast(1.12)' },
 ];
 
 const galleryGrid = document.getElementById('gallery-grid');
